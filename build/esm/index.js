@@ -376,7 +376,7 @@ class Format {
 	static datef(text, date, delta_hour) {
 		const target_delta_hour = delta_hour ? delta_hour : 9;
 		const target_date = new Date(date);
-		target_date.getUTCHours(target_date.getUTCHours() + target_delta_hour);
+		target_date.setUTCHours(target_date.getUTCHours() + target_delta_hour);
 
 		const Y = target_date.getUTCFullYear();
 		const M = target_date.getUTCMonth() + 1;

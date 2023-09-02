@@ -375,7 +375,7 @@
 	Format.datef = function datef (text, date, delta_hour) {
 		var target_delta_hour = delta_hour ? delta_hour : 9;
 		var target_date = new Date(date);
-		target_date.getUTCHours(target_date.getUTCHours() + target_delta_hour);
+		target_date.setUTCHours(target_date.getUTCHours() + target_delta_hour);
 
 		var Y = target_date.getUTCFullYear();
 		var M = target_date.getUTCMonth() + 1;
