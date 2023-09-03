@@ -1,7 +1,10 @@
 {
 	"name": "ntformat",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "sprintf function for JavaScript.",
+	"keywords": [
+		"sprintf"
+	],
 	"author": "natade-jp <natade3@gmail.com> (https://github.com/natade-jp)",
 	"repository": {
 		"type": "git",

@@ -1,5 +1,14 @@
-# ntformat
-JavaScript用の文字列のフォーマット
+# NTFormat
+![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)
+
+- JavaScript用の文字列のフォーマット
+- [npm](https://www.npmjs.com/package/ntformat)
+
+# Install
+
+```sh
+npm install --save-dev ntformat
+```
 
 # Sample
 
