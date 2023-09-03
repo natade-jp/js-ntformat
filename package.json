@@ -12,9 +12,9 @@
 	"main": "./src/index.js",
 	"exports": {
 		".": {
-			"browser": "./build/esm/index.js",
+			"browser": "./build/umd/index.js",
 			"umd": "./build/umd/index.js",
-			"import": "./src/index.js",
+			"import": "./build/esm/index.js",
 			"require": "./build/cjs/index.js"
 		}
 	},
