@@ -1,3 +1,3 @@
-import Format from "./Format.js";
+import NTFormat from "./NTFormat.js";
 
-export default Format;
+module.exports = NTFormat;

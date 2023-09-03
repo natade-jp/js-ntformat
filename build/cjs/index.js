@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Format.js
+ * NTFormat.js
  *
  * AUTHOR:
  *  natade (http://twitter.com/natadea)
@@ -13,9 +13,9 @@
 /**
  * 書式に合わせて文字列を組み立てる関数を提供するクラス
  */
-var Format = function Format () {};
+var NTFormat = function NTFormat () {};
 
-Format.textf = function textf () {
+NTFormat.textf = function textf () {
 	var parm_number = 1;
 	var parm = arguments;
 	/**
@@ -368,7 +368,7 @@ Format.textf = function textf () {
 	 * @param {number} [delta_hour=9] 時間のずらし(デフォルトは日本時間を利用する)
 	 * @returns {string}
 	 */
-Format.datef = function datef (text, date, delta_hour) {
+NTFormat.datef = function datef (text, date, delta_hour) {
 	var target_delta_hour = delta_hour ? delta_hour : 9;
 	var target_date = new Date(date);
 	target_date.setUTCHours(target_date.getUTCHours() + target_delta_hour);
@@ -388,17 +388,17 @@ Format.datef = function datef (text, date, delta_hour) {
 	var output = text;
 	output = output.replace(/YYYY/g, Y.toString());
 	output = output.replace(/YY/g, (Y % 100).toString());
-	output = output.replace(/MM/g, Format.textf("%02d", M));
+	output = output.replace(/MM/g, NTFormat.textf("%02d", M));
 	output = output.replace(/M/g, M.toString());
-	output = output.replace(/DD/g, Format.textf("%02d", D));
+	output = output.replace(/DD/g, NTFormat.textf("%02d", D));
 	output = output.replace(/D/g, D.toString());
-	output = output.replace(/hh/g, Format.textf("%02d", h));
+	output = output.replace(/hh/g, NTFormat.textf("%02d", h));
 	output = output.replace(/h/g, h.toString());
-	output = output.replace(/mm/g, Format.textf("%02d", m));
+	output = output.replace(/mm/g, NTFormat.textf("%02d", m));
 	output = output.replace(/m/g, m.toString());
-	output = output.replace(/ss/g, Format.textf("%02d", s));
+	output = output.replace(/ss/g, NTFormat.textf("%02d", s));
 	output = output.replace(/s/g, s.toString());
-	output = output.replace(/000/g, Format.textf("%03d", ms));
+	output = output.replace(/000/g, NTFormat.textf("%03d", ms));
 	output = output.replace(/aaaa/g, String.fromCharCode(aaa_array[day]) + aaaa_str);
 	output = output.replace(/aaa/g, String.fromCharCode(aaa_array[day]));
 	output = output.replace(/dddd/g, dddd_array[day]);
@@ -412,8 +412,8 @@ Format.datef = function datef (text, date, delta_hour) {
 	 * @param {Date} date 時刻情報
 	 * @returns {String}
 	 */
-Format.jpdate = function jpdate (date) {
-	return Format.datef("YYYY-MM-DDThh:mm:ss+09:00", date, 9);
+NTFormat.jpdate = function jpdate (date) {
+	return NTFormat.datef("YYYY-MM-DDThh:mm:ss+09:00", date, 9);
 };
 
-module.exports = Format;
+module.exports = NTFormat;
