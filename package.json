@@ -1,5 +1,5 @@
 {
-	"name": "@natade-jp/ntformat",
+	"name": "ntformat",
 	"version": "0.0.1",
 	"description": "sprintf function for JavaScript.",
 	"author": "natade-jp <natade3@gmail.com> (https://github.com/natade-jp)",
@@ -57,7 +57,7 @@
 			}
 		}
 	},
-	"homepage": "https://github.com/natade-jp/js-ntd-color#readme",
+	"homepage": "https://github.com/natade-jp/js-ntformat",
 	"devDependencies": {
 		"@lopatnov/rollup-plugin-uglify": "^2.1.5",
 		"@otris/jsdoc-tsd": "^3.0.0",
