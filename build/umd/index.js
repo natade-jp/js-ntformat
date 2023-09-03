@@ -368,14 +368,13 @@
 		 * - `YYYY-MM-DD hh:mm:ss` のように指定できる。
 		 * @param {string} text
 		 * @param {Date} date 時刻情報
-		 * @param {number} [delta_hour=9] 時間のずらし(デフォルトは日本時間を利用する)
+		 * @param {number} [timezone_offset] 表示時のオフセット（デフォルトはシステム時刻を使用する）
 		 * @returns {string}
 		 */
-	NTFormat.datef = function datef (text, date, delta_hour) {
-		var target_delta_hour = delta_hour ? delta_hour : 9;
+	NTFormat.datef = function datef (text, date, timezone_offset) {
+		var timezone_offset_minutes = timezone_offset ? timezone_offset : new Date().getTimezoneOffset();
 		var target_date = new Date(date);
-		target_date.setUTCHours(target_date.getUTCHours() + target_delta_hour);
-
+		target_date.setUTCMinutes(target_date.getUTCMinutes() - timezone_offset_minutes);
 		var Y = target_date.getUTCFullYear();
 		var M = target_date.getUTCMonth() + 1;
 		var D = target_date.getUTCDate();
@@ -411,12 +410,12 @@
 	};
 
 	/**
-		 * +09:00 を付けた日付に変換する
+		 * 指定した時刻を日本の時刻情報として表現する
 		 * @param {Date} date 時刻情報
 		 * @returns {String}
 		 */
 	NTFormat.jpdate = function jpdate (date) {
-		return NTFormat.datef("YYYY-MM-DDThh:mm:ss+09:00", date, 9);
+		return NTFormat.datef("YYYY-MM-DDThh:mm:ss+09:00", date, -(9 * 60));
 	};
 
 	module.exports = NTFormat;

@@ -12,6 +12,6 @@ JavaScript用の文字列のフォーマット
 ```javascript
 > import NTFormat from "ntformat";
 > console.log(NTFormat.datef(
-    "YYYY/MM/DD hh:mm:hh", new Date("2020-12-31T12:34:56+09:00"), 9));
-2020/12/31 12:34:12           
+    "YYYY/MM/DD hh:mm:ss", new Date("2023/1/20 12:34:56")));
+2023/01/20 12:34:56         
 ```

@@ -10,13 +10,13 @@ declare function textf(text: string, ...parm: any): string;
  * 時刻用の書式に合わせて文字列を組み立てる - `YYYY-MM-DD hh:mm:ss` のように指定できる。
  * @param text
  * @param date 時刻情報
- * @param delta_hour 時間のずらし(デフォルトは日本時間を利用する)
+ * @param timezone_offset 表示時のオフセット（デフォルトはシステム時刻を使用する）
  * @returns
  */
-declare function datef(text: string, date: Date, delta_hour?: number): string;
+declare function datef(text: string, date: Date, timezone_offset?: number): string;
 
 /**
- * +09:00 を付けた日付に変換する
+ * 指定した時刻を日本の時刻情報として表現する
  * @param date 時刻情報
  * @returns
  */

@@ -11,6 +11,10 @@ test("NTFormat.textf", () => {
 });
 
 test("NTFormat.datef", () => {
+	expect(NTFormat.datef("YYYY/MM/DD hh:mm:ss", new Date("2023/1/20 12:34:56"))).toBe("2023/01/20 12:34:56");
+});
+
+test("NTFormat.jpdate", () => {
 	const date_string = "2020-12-31T12:34:56+09:00";
-	expect(NTFormat.datef("YYYY-MM-DDThh:mm:ss+09:00", new Date(date_string))).toBe(date_string);
+	expect(NTFormat.jpdate(new Date(date_string))).toBe(date_string);
 });
