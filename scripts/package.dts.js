@@ -1,3 +1,3 @@
-import File from "./File.js";
+import NTFile from "ntfile";
 
-File.exec('npx jsdoc -c "./scripts/dts.config.json" -d "./build/index.d.ts"');
+NTFile.exec('npx jsdoc -c "./scripts/dts.config.json" -d "./build/index.d.ts"');

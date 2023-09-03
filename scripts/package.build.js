@@ -1,3 +1,3 @@
-﻿import File from "./File.js";
+﻿import NTFile from "ntfile";
 
-File.exec('npx rollup -c "./scripts/rollup.config.js"');
+NTFile.exec('npx rollup -c "./scripts/rollup.config.js"');

@@ -1,7 +1,8 @@
-(function (factory) {
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
-	factory();
-})((function () { 'use strict';
+	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Test = factory());
+})(this, (function () { 'use strict';
 
 	/**
 	 * NTFormat.js
@@ -418,6 +419,6 @@
 		return NTFormat.datef("YYYY-MM-DDThh:mm:ss+09:00", date, -(9 * 60));
 	};
 
-	module.exports = NTFormat;
+	return NTFormat;
 
 }));

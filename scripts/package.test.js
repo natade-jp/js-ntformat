@@ -1,4 +1,4 @@
-﻿import File from "./File.js";
+﻿import NTFile from "ntfile";
 
 const jest_config_js = {
 	verbose: true,
@@ -21,8 +21,8 @@ if (process.argv[2]) {
 	jest_config_js.testMatch.push("**/?(*.)(spec|test).?(m)js?(x)");
 }
 
-File.saveTextFile("jest.config.js", "module.exports = " + JSON.stringify(jest_config_js) + ";");
+NTFile.saveTextFile("jest.config.js", "module.exports = " + JSON.stringify(jest_config_js) + ";");
 
-File.exec("npx jest");
+NTFile.exec("npx jest");
 
-File.deleteFile("jest.config.js");
+NTFile.deleteFile("jest.config.js");

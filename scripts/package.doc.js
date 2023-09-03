@@ -1,3 +1,3 @@
-﻿import File from "./File.js";
+﻿import NTFile from "ntfile";
 
-File.exec('npx jsdoc -c "./scripts/jsdoc.config.json"');
+NTFile.exec('npx jsdoc -c "./scripts/jsdoc.config.json"');

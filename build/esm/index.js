@@ -421,4 +421,4 @@ class NTFormat {
 	}
 }
 
-module.exports = NTFormat;
+export { NTFormat as default };
