@@ -1,5 +1,6 @@
 {
 	"editor.formatOnSave": true,
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
-	"extensions.ignoreRecommendations": false
+	"extensions.ignoreRecommendations": false,
+	"liveServer.settings.port": 5501
 }

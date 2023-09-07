@@ -1,5 +1,5 @@
 {
-	"plugins": [],
+	"plugins": ["plugins/markdown", "plugins/summarize", "plugins/underscore"],
 	"recurseDepth": 10,
 	"source": {
 		"include": ["src"],
@@ -14,7 +14,10 @@
 	"templates": {
 		"referenceTitle": "My SDK Name",
 		"cleverLinks": false,
-		"monospaceLinks": false
+		"monospaceLinks": false,
+		"default": {
+			"includeDate": false
+		}
 	},
 	"opts": {
 		"template": "./node_modules/minami",

@@ -1,3 +1,3 @@
 ﻿import NTFile from "ntfile";
 
-NTFile.exec('npx jsdoc -c "./scripts/jsdoc.config.json"');
+NTFile.exec('npx jsdoc -R "./README.md" -c "./scripts/jsdoc.config.json"');
