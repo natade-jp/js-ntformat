@@ -2,6 +2,7 @@
 ![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)
 
 - JavaScript用の文字列のフォーマット
+- [github](https://github.com/natade-jp/js-ntformat)
 - [npm](https://www.npmjs.com/package/ntformat)
 - [jsdoc](https://natade-jp.github.io/js-ntformat/)
 
