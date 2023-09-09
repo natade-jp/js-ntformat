@@ -1,9 +1,9 @@
 {
 	"name": "ntformat",
-	"version": "0.0.3",
+	"version": "1.0.0",
 	"description": "sprintf function for JavaScript.",
 	"keywords": [
-		"sprintf"
+		"sprintf", "formatter"
 	],
 	"author": "natade-jp <natade3@gmail.com> (https://github.com/natade-jp)",
 	"repository": {

@@ -365,17 +365,37 @@
 	};
 
 	/**
+		 * 時刻表記のオプション
+		 * @typedef {Object} NTDatefOptiong
+		 * @property {number} [timezone_minutes] タイムゾーン（デフォルトはシステム時刻を使用する）
+		 * @property {boolean} [is_utc = false] 表示時にUTC時刻とタイムゾーンで表示する
+		 */
+
+	/**
 		 * 時刻用の書式に合わせて文字列を組み立てる
 		 * - `YYYY-MM-DD hh:mm:ss` のように指定できる。
+		 * - `YYYY`, `YY`, `MM`, `M`, `DD`, `D` ... 年月日
+		 * - `hh`, `h`, `mm`, `m`, `ss`, `s` ... 時間分秒
+		 * - `000` ... ミリ秒
+		 * - `aaaa`, `aaa` ...  曜日（日本語）
+		 * - `dddd`, `ddd` ...  曜日（英語）
+		 * - `zzz`, `zzzzz`, `zzzzzz` ... タイムゾーン(±hh, ±hhmm, ±hh:mm)
 		 * @param {string} text
 		 * @param {Date} date 時刻情報
-		 * @param {number} [timezone_offset] 表示時のオフセット（デフォルトはシステム時刻を使用する）
+		 * @param {NTDatefOptiong} [option] オプション
 		 * @returns {string}
 		 */
-	NTFormat.datef = function datef (text, date, timezone_offset) {
-		var timezone_offset_minutes = timezone_offset ? timezone_offset : new Date().getTimezoneOffset();
+	NTFormat.datef = function datef (text, date, option) {
+		var timezone_minutes = -date.getTimezoneOffset();
+		if (option && option.timezone_minutes !== undefined) {
+			timezone_minutes = option.timezone_minutes | 0;
+		}
 		var target_date = new Date(date);
-		target_date.setUTCMinutes(target_date.getUTCMinutes() - timezone_offset_minutes);
+		if (!(option && option.is_utc)) {
+			target_date.setUTCMinutes(target_date.getUTCMinutes() + timezone_minutes);
+			timezone_minutes = 0;
+		}
+
 		var Y = target_date.getUTCFullYear();
 		var M = target_date.getUTCMonth() + 1;
 		var D = target_date.getUTCDate();
@@ -388,6 +408,9 @@
 		var aaaa_str = String.fromCharCode(26332) + String.fromCharCode(26085);
 		var ddd_array = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 		var dddd_array = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+		var zh = Math.trunc(timezone_minutes / 60);
+		var zm = Math.abs(timezone_minutes - zh * 60);
+
 		var output = text;
 		output = output.replace(/YYYY/g, Y.toString());
 		output = output.replace(/YY/g, (Y % 100).toString());
@@ -407,16 +430,11 @@
 		output = output.replace(/dddd/g, dddd_array[day]);
 		output = output.replace(/ddd/g, ddd_array[day]);
 		output = output.replace(/day/g, day.toString());
-		return output;
-	};
+		output = output.replace(/zzzzzz/g, NTFormat.textf("%+03d:%02d", zh, zm));
+		output = output.replace(/zzzzz/g, NTFormat.textf("%+03d%02d", zh, zm));
+		output = output.replace(/zzz/g, NTFormat.textf("%+03d", zh));
 
-	/**
-		 * 指定した時刻を日本の時刻情報として表現する
-		 * @param {Date} date 時刻情報
-		 * @returns {String}
-		 */
-	NTFormat.jpdate = function jpdate (date) {
-		return NTFormat.datef("YYYY-MM-DDThh:mm:ss+09:00", date, -(9 * 60));
+		return output;
 	};
 
 	return NTFormat;

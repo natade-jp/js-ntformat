@@ -14,10 +14,25 @@
 class NTFormat {
 	/**
 	 * `printf` に似た書式に合わせて文字列を組み立てる
-	 * - ロケール、日付時刻等はサポートしていません。
-	 * - 変換指定子の`p`と`n`はサポートしていません。
+	 *
+	 * - %[`引数順$`][`フラグ`][`幅`][`精度`][`変換指定子`]で指定する
+	 * - フラグ
+	 *   - `#` ... 進数に応じて `0b`, `0`, `0x` を頭につける
+	 *   - `-` ... 左揃え
+	 *   - ` ` ... 半角スペース空け
+	 *   - `+` ... サイン情報
+	 *   - `0` ... ゼロ詰め
+	 * - 変換指定子
+	 *   - `d`, `i`, `u` ... 整数表記(`di` 整数, `u` 符号無し数)
+	 *   - `b`, `o`, `x` ... 進数表記(`b` 2進数, `o` 8進数, `x` 16進数)
+	 *   - `f`, `e`, `g` ... 実数表記(`f` 指定なし, `e` 指数表示, `g` 最適)
+	 *   - `c` ... ASCII CODE
+	 *   - `s` ... 文字列
+	 *   - `p`, `n` ... 未サポート
+	 * - `hh|h|ll|l|L|z|j|t` の長さ修飾子は非サポート
+	 * - ロケール、日付時刻等は非サポート
 	 * @param {string} text
-	 * @param {...any} parm パラメータは可変引数
+	 * @param {...(string|number)} parm パラメータは可変引数
 	 * @returns {string}
 	 */
 	static textf() {
@@ -366,17 +381,37 @@ class NTFormat {
 	}
 
 	/**
+	 * 時刻表記のオプション
+	 * @typedef {Object} NTDatefOptiong
+	 * @property {number} [timezone_minutes] タイムゾーン（デフォルトはシステム時刻を使用する）
+	 * @property {boolean} [is_utc = false] 表示時にUTC時刻とタイムゾーンで表示する
+	 */
+
+	/**
 	 * 時刻用の書式に合わせて文字列を組み立てる
 	 * - `YYYY-MM-DD hh:mm:ss` のように指定できる。
+	 * - `YYYY`, `YY`, `MM`, `M`, `DD`, `D` ... 年月日
+	 * - `hh`, `h`, `mm`, `m`, `ss`, `s` ... 時間分秒
+	 * - `000` ... ミリ秒
+	 * - `aaaa`, `aaa` ...  曜日（日本語）
+	 * - `dddd`, `ddd` ...  曜日（英語）
+	 * - `zzz`, `zzzzz`, `zzzzzz` ... タイムゾーン(±hh, ±hhmm, ±hh:mm)
 	 * @param {string} text
 	 * @param {Date} date 時刻情報
-	 * @param {number} [timezone_offset] 表示時のオフセット（デフォルトはシステム時刻を使用する）
+	 * @param {NTDatefOptiong} [option] オプション
 	 * @returns {string}
 	 */
-	static datef(text, date, timezone_offset) {
-		const timezone_offset_minutes = timezone_offset ? timezone_offset : new Date().getTimezoneOffset();
+	static datef(text, date, option) {
+		let timezone_minutes = -date.getTimezoneOffset();
+		if (option && option.timezone_minutes !== undefined) {
+			timezone_minutes = option.timezone_minutes | 0;
+		}
 		const target_date = new Date(date);
-		target_date.setUTCMinutes(target_date.getUTCMinutes() - timezone_offset_minutes);
+		if (!(option && option.is_utc)) {
+			target_date.setUTCMinutes(target_date.getUTCMinutes() + timezone_minutes);
+			timezone_minutes = 0;
+		}
+
 		const Y = target_date.getUTCFullYear();
 		const M = target_date.getUTCMonth() + 1;
 		const D = target_date.getUTCDate();
@@ -389,6 +424,9 @@ class NTFormat {
 		const aaaa_str = String.fromCharCode(26332) + String.fromCharCode(26085);
 		const ddd_array = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 		const dddd_array = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+		const zh = Math.trunc(timezone_minutes / 60);
+		const zm = Math.abs(timezone_minutes - zh * 60);
+
 		let output = text;
 		output = output.replace(/YYYY/g, Y.toString());
 		output = output.replace(/YY/g, (Y % 100).toString());
@@ -408,16 +446,11 @@ class NTFormat {
 		output = output.replace(/dddd/g, dddd_array[day]);
 		output = output.replace(/ddd/g, ddd_array[day]);
 		output = output.replace(/day/g, day.toString());
-		return output;
-	}
+		output = output.replace(/zzzzzz/g, NTFormat.textf("%+03d:%02d", zh, zm));
+		output = output.replace(/zzzzz/g, NTFormat.textf("%+03d%02d", zh, zm));
+		output = output.replace(/zzz/g, NTFormat.textf("%+03d", zh));
 
-	/**
-	 * 指定した時刻を日本の時刻情報として表現する
-	 * @param {Date} date 時刻情報
-	 * @returns {String}
-	 */
-	static jpdate(date) {
-		return NTFormat.datef("YYYY-MM-DDThh:mm:ss+09:00", date, -(9 * 60));
+		return output;
 	}
 }
 

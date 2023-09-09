@@ -24,7 +24,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="module.exports.html">exports</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#datef">datef</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#jpdate">jpdate</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#textf">textf</a></span></li>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="module.exports.html">exports</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#datef">datef</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#textf">textf</a></span></li>
 </nav>
 
 <div id="main">
@@ -117,13 +117,13 @@
 
     
 
-    <h4 class="name" id="datef"><span class="type-signature"></span>datef<span class="signature">(text, date, timezone_offset<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {string}</span></h4>
+    <h4 class="name" id="datef"><span class="type-signature"></span>datef<span class="signature">(text, date, option<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {string}</span></h4>
 
     
     <p class="summary"><p>時刻用の書式に合わせて文字列を組み立てる</p>
 <ul>
 <li><code>YYYY-MM-DD hh:mm:ss</code> のように指定できる。</li>
-</ul>.</p>
+<li><code>YYYY</code>, <code>YY</code>, <code>MM</code>, <code>M</code>, <code>DD</code>, <code>D</code> ...</li></ul></p>
     
 
 
@@ -132,6 +132,12 @@
     <p>時刻用の書式に合わせて文字列を組み立てる</p>
 <ul>
 <li><code>YYYY-MM-DD hh:mm:ss</code> のように指定できる。</li>
+<li><code>YYYY</code>, <code>YY</code>, <code>MM</code>, <code>M</code>, <code>DD</code>, <code>D</code> ... 年月日</li>
+<li><code>hh</code>, <code>h</code>, <code>mm</code>, <code>m</code>, <code>ss</code>, <code>s</code> ... 時間分秒</li>
+<li><code>000</code> ... ミリ秒</li>
+<li><code>aaaa</code>, <code>aaa</code> ...  曜日（日本語）</li>
+<li><code>dddd</code>, <code>ddd</code> ...  曜日（英語）</li>
+<li><code>zzz</code>, <code>zzzzz</code>, <code>zzzzzz</code> ... タイムゾーン(±hh, ±hhmm, ±hh:mm)</li>
 </ul>
 </div>
 
@@ -168,7 +174,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="NTFormat.js.html">NTFormat.js</a>, <a href="NTFormat.js.html#line387">line 387</a>
+        <a href="NTFormat.js.html">NTFormat.js</a>, <a href="NTFormat.js.html#line415">line 415</a>
     </li></ul></dd>
     
 
@@ -282,13 +288,13 @@
 
         <tr>
             
-                <td class="name"><code>timezone_offset</code></td>
+                <td class="name"><code>option</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><code>number</code></span>
+<span class="param-type"><code><a href="global.html#NTDatefOptiong">NTDatefOptiong</a></code></span>
 
 
             
@@ -309,7 +315,7 @@
             
 
             <td class="description last">
-                <p>表示時のオフセット（デフォルトはシステム時刻を使用する）</p>
+                <p>オプション</p>
                 
             </td>
         </tr>
@@ -361,172 +367,15 @@
 
     
 
-    <h4 class="name" id="jpdate"><span class="type-signature"></span>jpdate<span class="signature">(date)</span><span class="type-signature"> &rarr; {String}</span></h4>
-
-    
-    <p class="summary"><p>指定した時刻を日本の時刻情報として表現する</p>.</p>
-    
-
-
-
-<div class="description">
-    <p>指定した時刻を日本の時刻情報として表現する</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="NTFormat.js.html">NTFormat.js</a>, <a href="NTFormat.js.html#line430">line 430</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>date</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>Date</code></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">
-                <p>時刻情報</p>
-                
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="section-returns">
-<h5>Returns:</h5>
-
-        
-
-<dl class="param-type">
-    <dt>
-        Type:
-    </dt>
-    <dd>
-        
-<span class="param-type"><code>String</code></span>
-
-
-    </dd>
-</dl>
-
-
-    
-</div>
-
-
-
-</div>
-        
-            
-<div class="section-method">
-
-    
-
     <h4 class="name" id="textf"><span class="type-signature"></span>textf<span class="signature">(text, &hellip;parm)</span><span class="type-signature"> &rarr; {string}</span></h4>
 
     
     <p class="summary"><p><code>printf</code> に似た書式に合わせて文字列を組み立てる</p>
 <ul>
-<li>ロケール、日付時刻等はサポートしていません。</li>
-<li>変換指定子の<code>p</code>と<code>n</code>はサポートしていません。</li>
-</ul>.</p>
+<li>%[<code>引数順$</code>][<code>フラグ</code>][<code>幅</code>][<code>精度</code>][<code>変換指定子</code>]で指定する</li>
+<li>フラグ
+<ul>
+<li><code>#</code> ...</li></ul></li></ul></p>
     
 
 
@@ -534,8 +383,28 @@
 <div class="description">
     <p><code>printf</code> に似た書式に合わせて文字列を組み立てる</p>
 <ul>
-<li>ロケール、日付時刻等はサポートしていません。</li>
-<li>変換指定子の<code>p</code>と<code>n</code>はサポートしていません。</li>
+<li>%[<code>引数順$</code>][<code>フラグ</code>][<code>幅</code>][<code>精度</code>][<code>変換指定子</code>]で指定する</li>
+<li>フラグ
+<ul>
+<li><code>#</code> ... 進数に応じて <code>0b</code>, <code>0</code>, <code>0x</code> を頭につける</li>
+<li><code>-</code> ... 左揃え</li>
+<li><code> </code> ... 半角スペース空け</li>
+<li><code>+</code> ... サイン情報</li>
+<li><code>0</code> ... ゼロ詰め</li>
+</ul>
+</li>
+<li>変換指定子
+<ul>
+<li><code>d</code>, <code>i</code>, <code>u</code> ... 整数表記(<code>di</code> 整数, <code>u</code> 符号無し数)</li>
+<li><code>b</code>, <code>o</code>, <code>x</code> ... 進数表記(<code>b</code> 2進数, <code>o</code> 8進数, <code>x</code> 16進数)</li>
+<li><code>f</code>, <code>e</code>, <code>g</code> ... 実数表記(<code>f</code> 指定なし, <code>e</code> 指数表示, <code>g</code> 最適)</li>
+<li><code>c</code> ... ASCII CODE</li>
+<li><code>s</code> ... 文字列</li>
+<li><code>p</code>, <code>n</code> ... 未サポート</li>
+</ul>
+</li>
+<li><code>hh|h|ll|l|L|z|j|t</code> の長さ修飾子は非サポート</li>
+<li>ロケール、日付時刻等は非サポート</li>
 </ul>
 </div>
 
@@ -572,7 +441,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="NTFormat.js.html">NTFormat.js</a>, <a href="NTFormat.js.html#line23">line 23</a>
+        <a href="NTFormat.js.html">NTFormat.js</a>, <a href="NTFormat.js.html#line38">line 38</a>
     </li></ul></dd>
     
 
@@ -658,7 +527,10 @@
             <td class="type">
             
                 
-<span class="param-type"><code>any</code></span>
+<span class="param-type"><code>string</code></span>
+|
+
+<span class="param-type"><code>number</code></span>
 
 
             
@@ -728,6 +600,195 @@
         
     
 
+    
+        <h3 class="subsection-title">Type Definitions</h3>
+
+        
+                
+<div class="section-members">
+<h4 class="name" id="NTDatefOptiong">NTDatefOptiong</h4>
+
+
+<p class="summary"><p>時刻表記のオプション</p>.</p>
+
+
+
+<div class="description">
+    <p>時刻表記のオプション</p>
+</div>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>timezone_minutes</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>number</code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>タイムゾーン（デフォルトはシステム時刻を使用する）</p></td>
+        </tr>
+
+        
+
+    
+
+        <tr>
+            
+                <td class="name"><code>is_utc</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>boolean</code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last"><p>表示時にUTC時刻とタイムゾーンで表示する</p></td>
+        </tr>
+
+        
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="NTFormat.js.html">NTFormat.js</a>, <a href="NTFormat.js.html#line394">line 394</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><code>Object</code></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</div>
+
+            
     
 
     
