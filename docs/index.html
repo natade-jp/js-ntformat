@@ -73,12 +73,18 @@
 2023/01/20 12:34:56
 
 > console.log(
-> 	NTFormat.datef(&quot;YYYY-MM-DDThh:mm:sszzzzzz&quot;, new Date(&quot;2023-01-23T12:34:56+09:00&quot;), {
-> 		is_utc: true,
+> 	NTFormat.datef(&quot;YYYY-MM-DDThh:mm:sszzzzzz&quot;, new Date(&quot;2023-01-23T12:34:56+02:00&quot;), {
 > 		timezone_minutes: 9 * 60
 > 	})
 > );
-2023-01-23T03:34:56+09:00
+2023-01-23T19:34:56+09:00
+
+> console.log(
+> 	NTFormat.datef(&quot;YYYY-MM-DDThh:mm:ssZ&quot;, new Date(&quot;2023-01-23T12:34:56+02:00&quot;), {
+> 		is_utc: true
+> 	})
+> );
+2023-01-23T10:34:56Z
 </code></pre></article>
     </section>
 

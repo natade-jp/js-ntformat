@@ -15,7 +15,7 @@ declare interface NTDatefOptiong {
      */
     timezone_minutes?: number;
     /**
-     * 表示時にUTC時刻とタイムゾーンで表示する
+     * 表示時にUTC時刻で表示する
      */
     is_utc?: boolean;
 }

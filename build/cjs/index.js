@@ -364,7 +364,7 @@ NTFormat.textf = function textf () {
 	 * 時刻表記のオプション
 	 * @typedef {Object} NTDatefOptiong
 	 * @property {number} [timezone_minutes] タイムゾーン（デフォルトはシステム時刻を使用する）
-	 * @property {boolean} [is_utc = false] 表示時にUTC時刻とタイムゾーンで表示する
+	 * @property {boolean} [is_utc = false] 表示時にUTC時刻で表示する
 	 */
 
 /**
@@ -388,7 +388,8 @@ NTFormat.datef = function datef (text, date, option) {
 	}
 	var target_date = new Date(date);
 	if (!(option && option.is_utc)) {
-		target_date.setUTCMinutes(target_date.getUTCMinutes() + timezone_minutes);
+		target_date.setUTCMinutes(target_date.getUTCMinutes() - target_date.getTimezoneOffset());
+	} else {
 		timezone_minutes = 0;
 	}
 

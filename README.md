@@ -31,11 +31,17 @@ import NTFormat from "ntformat";
 2023/01/20 12:34:56
 
 > console.log(
-> 	NTFormat.datef("YYYY-MM-DDThh:mm:sszzzzzz", new Date("2023-01-23T12:34:56+09:00"), {
-> 		is_utc: true,
+> 	NTFormat.datef("YYYY-MM-DDThh:mm:sszzzzzz", new Date("2023-01-23T12:34:56+02:00"), {
 > 		timezone_minutes: 9 * 60
 > 	})
 > );
-2023-01-23T03:34:56+09:00
+2023-01-23T19:34:56+09:00
+
+> console.log(
+> 	NTFormat.datef("YYYY-MM-DDThh:mm:ssZ", new Date("2023-01-23T12:34:56+02:00"), {
+> 		is_utc: true
+> 	})
+> );
+2023-01-23T10:34:56Z
 ```
 
